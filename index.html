@@ -1,147 +1,1018 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>IGCSE Geography Vocabulary</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGCSE Geography Master</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eef2f7;
-  color: #2c3e50;
-}
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-/* NAVBAR */
-.navbar {
-  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-  padding: 15px;
-  display: flex;
-  align-items: center;
-}
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-.navbar h1 {
-  color: white;
-  margin: 0 30px 0 10px;
-}
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 100;
+        }
 
-.navbar button {
-  background: #f39c12;
-  border: none;
-  padding: 10px 20px;
-  margin-right: 15px;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
-}
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
 
-.navbar button:hover {
-  background: #e67e22;
-  transform: scale(1.08);
-}
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
 
-/* SECTIONS */
-.section {
-  display: none;
-  padding: 25px;
-  animation: slideFade 0.6s ease;
-}
+        /* Menu Icon */
+        .menu-icon {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1001;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
 
-.section.active {
-  display: block;
-}
+        .menu-icon:hover {
+            transform: scale(1.1);
+            background-color: #2980b9;
+        }
 
-@keyframes slideFade {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow-y: auto;
+            padding-top: 80px;
+        }
 
-h2 {
-  color: #203a43;
-  border-bottom: 4px solid #f39c12;
-  padding-bottom: 6px;
-}
+        .side-menu.active {
+            left: 0;
+        }
 
-.box {
-  background: white;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-}
+        .menu-section {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
 
-.box h3 {
-  color: #2c5364;
-}
+        .menu-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
 
-/* VOCAB */
-.vocab p {
-  margin: 6px 0;
-  line-height: 1.4;
-}
-</style>
+        .unit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border: none;
+            border-radius: 8px;
+            color: var(--dark-color);
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+
+        .unit-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateX(5px);
+            border-left-color: var(--accent-color);
+        }
+
+        .unit-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-left-color: var(--accent-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: 1rem;
+        }
+
+        .unit-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .unit-content.active {
+            display: block;
+        }
+
+        .unit-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .unit-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background-color: #f1f2f6;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .vocab-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vocab-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .vocab-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .question-card {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+        }
+
+        .question-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .question-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .case-study {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .case-study h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .case-study h4 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 0.8rem 0;
+            font-size: 1.2rem;
+        }
+
+        .case-study p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .case-study ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .side-menu {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .side-menu.active {
+                left: 0;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .unit-header {
+                padding: 1.5rem;
+            }
+            
+            .unit-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .vocab-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Menu Icon -->
+    <div class="menu-icon" id="menuToggle">
+        <i class="fas fa-bars fa-lg"></i>
+    </div>
 
-<!-- NAV -->
-<div class="navbar">
-  <h1>Geography</h1>
-  <button onclick="show('population')">Human Population</button>
-  <button onclick="show('rivers')">Rivers</button>
-  <button onclick="show('vocab')">Vocabulary</button>
-</div>
+    <!-- Side Menu -->
+    <nav class="side-menu" id="sideMenu">
+        <div class="menu-section">
+            <h3>IGCSE Geography</h3>
+            <button class="unit-btn active" data-unit="unit1">1. Population & Settlement</button>
+            <button class="unit-btn" data-unit="unit2">2. The Natural Environment</button>
+            <button class="unit-btn" data-unit="unit3">3. Economic Development</button>
+            <button class="unit-btn" data-unit="unit4">4. Geographical Skills</button>
+        </div>
+        
+        <div class="menu-section">
+            <h3>Study Tools</h3>
+            <button class="unit-btn" data-unit="all-vocab">All Vocabulary</button>
+            <button class="unit-btn" data-unit="all-case-studies">All Case Studies</button>
+            <button class="unit-btn" data-unit="exam-tips">Exam Tips</button>
+        </div>
+        
+        <div class="menu-section">
+            <h3>Resources</h3>
+            <p style="padding: 0 1rem; color: #666; line-height: 1.6;">Use the buttons above to navigate between units. Each unit contains vocabulary, questions, and case studies.</p>
+        </div>
+    </nav>
 
-<!-- POPULATION -->
-<div id="population" class="section active">
-<h2>Human Population</h2>
+    <!-- Header -->
+    <header>
+        <h1><i class="fas fa-globe-americas"></i> IGCSE Geography Master</h1>
+        <p>Complete vocabulary list, case studies, and exam questions for IGCSE Geography</p>
+    </header>
 
-<div class="box">
-<h3>Population Change</h3>
-<p>Population change is influenced by birth rate, death rate and migration. When birth rate is higher than death rate, natural increase occurs, leading to population growth.</p>
-<p>Population structure can be analysed using population pyramids, which show age, sex, and dependency ratio.</p>
-</div>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Unit 1 Content -->
+        <section class="unit-content active" id="unit1">
+            <div class="unit-header">
+                <h2>1. Population & Settlement</h2>
+                <p>Understanding human populations, migration, and settlement patterns</p>
+            </div>
+            
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="vocab1">Vocabulary List</button>
+                <button class="tab-btn" data-tab="questions1">Past Paper Questions</button>
+                <button class="tab-btn" data-tab="case1">Case Studies</button>
+            </div>
+            
+            <div class="tab-content active" id="vocab1">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Key Vocabulary</h3>
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <h4>Birth Rate</h4>
+                        <p>The number of live births per thousand people per year.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Death Rate</h4>
+                        <p>The number of deaths per thousand people per year.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Natural Increase</h4>
+                        <p>When birth rate exceeds death rate (population grows without migration).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Population Density</h4>
+                        <p>Number of people per square kilometre (people/km²).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Dependency Ratio</h4>
+                        <p>Ratio of dependents (young + old) to the working-age population.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Migration</h4>
+                        <p>Movement of people from one place to another to live.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Urbanisation</h4>
+                        <p>Increase in proportion of population living in urban areas.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Rural-Urban Migration</h4>
+                        <p>Movement from countryside to cities.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Megacity</h4>
+                        <p>City with population over 10 million people.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Settlement Hierarchy</h4>
+                        <p>Ranking of settlements by size/services (hamlet, village, town, city).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="questions1">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Common Past Paper Questions</h3>
+                <div class="questions-list">
+                    <div class="question-card">
+                        <h4>Question 1</h4>
+                        <p>Explain two reasons for high rates of rural-urban migration in developing countries. (4 marks)</p>
+                        <p><strong>Tip:</strong> Consider both push (from rural) and pull (to urban) factors.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 2</h4>
+                        <p>Describe the likely population pyramid for a country with a high birth rate and decreasing death rate. (3 marks)</p>
+                        <p><strong>Tip:</strong> Draw a pyramid with wide base (young) and narrowing upwards.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 3</h4>
+                        <p>Compare the challenges of managing population growth in densely populated and sparsely populated areas. (6 marks)</p>
+                        <p><strong>Tip:</strong> Address issues like resource pressure vs. service provision.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 4</h4>
+                        <p>Analyze how the functions of a settlement might change as it grows in size. (5 marks)</p>
+                        <p><strong>Tip:</strong> Consider changes from basic services to higher-order services.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="case1">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Case Studies</h3>
+                
+                <div class="case-study">
+                    <h3><i class="fas fa-users"></i> Japan - Aging Population</h3>
+                    <h4>Overview</h4>
+                    <p>Japan has one of the world's oldest populations, with over 28% aged 65+. This creates significant demographic challenges.</p>
+                    
+                    <h4>Causes</h4>
+                    <ul>
+                        <li>Very low birth rate (1.34 births per woman)</li>
+                        <li>High life expectancy (84 years)</li>
+                        <li>Traditional societal values changing</li>
+                        <li>High cost of living and child-rearing</li>
+                    </ul>
+                    
+                    <h4>Impacts</h4>
+                    <ul>
+                        <li>Shrinking workforce and economic growth</li>
+                        <li>Increased pressure on pension systems</li>
+                        <li>Healthcare services under strain</li>
+                        <li>Rural depopulation and abandoned towns</li>
+                    </ul>
+                    
+                    <h4>Responses</h4>
+                    <ul>
+                        <li>Robotics and automation to compensate for labor shortages</li>
+                        <li>Encouraging immigration (slow policy change)</li>
+                        <li>Financial incentives for families to have children</li>
+                        <li>Raising retirement age from 65 to 70</li>
+                    </ul>
+                </div>
+                
+                <div class="case-study">
+                    <h3><i class="fas fa-city"></i> Singapore - Population Management</h3>
+                    <h4>Overview</h4>
+                    <p>A small city-state with high population density that has implemented proactive population policies.</p>
+                    
+                    <h4>Historical Context</h4>
+                    <p>In the 1960s-80s, Singapore had a "Stop at Two" policy to control rapid population growth. Today it faces declining birth rates.</p>
+                    
+                    <h4>Current Challenges</h4>
+                    <ul>
+                        <li>Very low fertility rate (1.14 in 2020)</li>
+                        <li>Reliance on foreign labor</li>
+                        <li>Limited physical space</li>
+                        <li>Aging population similar to Japan</li>
+                    </ul>
+                    
+                    <h4>Policies & Strategies</h4>
+                    <ul>
+                        <li><strong>Pro-natalist policies:</strong> Baby bonuses, tax relief, extended maternity leave</li>
+                        <li><strong>Immigration:</strong> Controlled skilled migration to maintain workforce</li>
+                        <li><strong>Urban planning:</strong> High-rise living, efficient public transport</li>
+                        <li><strong>Social engineering:</strong> Promotion of marriage and family values</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <p>While birth rates remain low, Singapore has maintained economic growth through selective immigration and efficient urban management.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Unit 2 Content -->
+        <section class="unit-content" id="unit2">
+            <div class="unit-header">
+                <h2>2. The Natural Environment</h2>
+                <p>Physical geography including rivers, coasts, tectonics, and climate</p>
+            </div>
+            
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="vocab2">Vocabulary List</button>
+                <button class="tab-btn" data-tab="questions2">Past Paper Questions</button>
+                <button class="tab-btn" data-tab="case2">Case Studies</button>
+            </div>
+            
+            <div class="tab-content active" id="vocab2">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Key Vocabulary</h3>
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <h4>Erosion</h4>
+                        <p>The wearing away and removal of material by water, wind, or ice.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Transportation</h4>
+                        <p>The movement of eroded material.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Deposition</h4>
+                        <p>Dropping of material when a river or wave loses energy.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Meander</h4>
+                        <p>A pronounced bend in a river.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Ox-bow Lake</h4>
+                        <p>Crescent-shaped lake formed from a cut-off meander.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Longshore Drift</h4>
+                        <p>Zigzag movement of material along a coast by waves.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Spit</h4>
+                        <p>Long, narrow finger of sand/shingle projecting from coastline.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Plate Tectonics</h4>
+                        <p>Theory that Earth's crust is divided into moving plates.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Epicentre</h4>
+                        <p>Point on Earth's surface directly above earthquake focus.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Richter Scale</h4>
+                        <p>Logarithmic scale measuring earthquake magnitude.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="questions2">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Common Past Paper Questions</h3>
+                <div class="questions-list">
+                    <div class="question-card">
+                        <h4>Question 1</h4>
+                        <p>Explain how a river's characteristics change from its source to its mouth. (6 marks)</p>
+                        <p><strong>Tip:</strong> Discuss gradient, velocity, discharge, sediment size, and valley shape.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 2</h4>
+                        <p>Describe the process of longshore drift and its role in forming coastal landforms. (4 marks)</p>
+                        <p><strong>Tip:</strong> Include direction of swash/backwash and formation of spits/bars.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 3</h4>
+                        <p>Compare the characteristics of shield and composite volcanoes. (5 marks)</p>
+                        <p><strong>Tip:</strong> Consider shape, lava type, eruption style, and plate boundary location.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 4</h4>
+                        <p>Evaluate the effectiveness of different coastal management strategies. (7 marks)</p>
+                        <p><strong>Tip:</strong> Compare hard vs soft engineering, considering cost, effectiveness, and environmental impact.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="case2">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Case Studies</h3>
+                
+                <div class="case-study">
+                    <h3><i class="fas fa-water"></i> The Ganges River - Flood Management</h3>
+                    <h4>Overview</h4>
+                    <p>The Ganges is a major river flowing through India and Bangladesh, prone to seasonal flooding that affects millions.</p>
+                    
+                    <h4>Physical Characteristics</h4>
+                    <ul>
+                        <li>Length: 2,525 km</li>
+                        <li>Source: Gangotri Glacier in Himalayas</li>
+                        <li>Mouth: Bay of Bengal (forms world's largest delta)</li>
+                        <li>Basin population: Over 400 million people</li>
+                    </ul>
+                    
+                    <h4>Causes of Flooding</h4>
+                    <ul>
+                        <li><strong>Monsoon rainfall:</strong> Heavy July-September rains</li>
+                        <li><strong>Glacial melt:</strong> Increased meltwater from Himalayas</li>
+                        <li><strong>Deforestation:</strong> Reduced interception in catchment</li>
+                        <li><strong>Delta location:</strong> Flat land with slow drainage</li>
+                        <li><strong>Urbanisation:</strong> Impermeable surfaces increase runoff</li>
+                    </ul>
+                    
+                    <h4>Impacts</h4>
+                    <ul>
+                        <li><strong>Positive:</strong> Deposits fertile silt for agriculture</li>
+                        <li><strong>Negative:</strong> Loss of life, property damage, displacement</li>
+                        <li><strong>Economic:</strong> Damage to infrastructure, loss of crops</li>
+                        <li><strong>Social:</strong> Spread of waterborne diseases, homelessness</li>
+                    </ul>
+                    
+                    <h4>Management Strategies</h4>
+                    <ul>
+                        <li><strong>Embankments (levees):</strong> Over 3,500 km along the river</li>
+                        <li><strong>Flood warnings:</strong> Improved forecasting systems</li>
+                        <li><strong>Afforestation:</strong> Planting in upper catchment to reduce runoff</li>
+                        <li><strong>Dam construction:</strong> Farakka Barrage for flow regulation</li>
+                        <li><strong>Community preparedness:</strong> Emergency shelters, evacuation plans</li>
+                    </ul>
+                </div>
+                
+                <div class="case-study">
+                    <h3><i class="fas fa-house-flood-water"></i> Boscastle Flood (2004)</h3>
+                    <h4>Overview</h4>
+                    <p>A flash flood in the Cornish village of Boscastle on 16 August 2004 caused by extreme rainfall.</p>
+                    
+                    <h4>Causes</h4>
+                    <ul>
+                        <li><strong>Extreme rainfall:</strong> 200mm in 4 hours (3 months' average)</li>
+                        <li><strong>Steep valleys:</strong> Rapid surface runoff</li>
+                        <li><strong>Saturated ground:</strong> Previous wet weather</li>
+                        <li><strong>Confluence:</strong> Three rivers meet at Boscastle</li>
+                        <li><strong>Narrow river channel:</strong> Easily blocked by debris</li>
+                    </ul>
+                    
+                    <h4>Impacts</h4>
+                    <ul>
+                        <li>No deaths but 58 properties flooded</li>
+                        <li>75 cars, 5 buildings swept into sea</li>
+                        <li>Extensive damage to infrastructure</li>
+                        <li>Tourism disruption (main local industry)</li>
+                        <li>Insurance costs: £20 million+</li>
+                    </ul>
+                    
+                    <h4>Responses & Management</h4>
+                    <ul>
+                        <li><strong>Immediate:</strong> Helicopter rescue of 150 people</li>
+                        <li><strong>Engineering:</strong> River channel widened and deepened</li>
+                        <li><strong>Defenses:</strong> New flood walls and culverts</li>
+                        <li><strong>Early warning:</strong> Improved flood warning system</li>
+                        <li><strong>Land use:</strong> Car park raised above flood level</li>
+                        <li><strong>Monitoring:</strong> Regular dredging to prevent blockages</li>
+                    </ul>
+                    
+                    <h4>Why Study Boscastle?</h4>
+                    <p>Excellent example of how physical and human factors combine to create a flood hazard, and how both hard and soft engineering can reduce future risk.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Unit 3 Content -->
+        <section class="unit-content" id="unit3">
+            <div class="unit-header">
+                <h2>3. Economic Development</h2>
+                <p>Industry, globalization, development, and sustainability</p>
+            </div>
+            
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="vocab3">Vocabulary List</button>
+                <button class="tab-btn" data-tab="questions3">Past Paper Questions</button>
+                <button class="tab-btn" data-tab="case3">Case Studies</button>
+            </div>
+            
+            <div class="tab-content active" id="vocab3">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Key Vocabulary</h3>
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <h4>Primary Industry</h4>
+                        <p>Extracting raw materials (farming, mining, fishing).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Secondary Industry</h4>
+                        <p>Manufacturing raw materials into products.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Tertiary Industry</h4>
+                        <p>Providing services (teaching, retail, transport).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Quaternary Industry</h4>
+                        <p>High-tech, research, information services.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Employment Structure</h4>
+                        <p>Proportion of people working in each sector.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Informal Sector</h4>
+                        <p>Economy not taxed/monitored by government.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Multinational Corporation (MNC)</h4>
+                        <p>Company operating in many countries.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Globalisation</h4>
+                        <p>Growing interconnection of countries worldwide.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>HDI</h4>
+                        <p>Human Development Index - composite measure using life expectancy, education, income.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Sustainable Development</h4>
+                        <p>Development meeting present needs without compromising future generations.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="questions3">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Common Past Paper Questions</h3>
+                <div class="questions-list">
+                    <div class="question-card">
+                        <h4>Question 1</h4>
+                        <p>Discuss the advantages and disadvantages of multinational corporations (MNCs) for host countries. (6 marks)</p>
+                        <p><strong>Tip:</strong> Consider employment, technology transfer vs profit repatriation, environmental standards.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 2</h4>
+                        <p>Explain how the employment structure of a country changes as it develops. (5 marks)</p>
+                        <p><strong>Tip:</strong> Describe transition from primary-dominated to service-based economy.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 3</h4>
+                        <p>Compare the strengths and limitations of GDP per capita and HDI as measures of development. (4 marks)</p>
+                        <p><strong>Tip:</strong> GDP measures wealth only; HDI includes social factors.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 4</h4>
+                        <p>Evaluate strategies to promote sustainable development in rapidly industrializing countries. (7 marks)</p>
+                        <p><strong>Tip:</strong> Consider renewable energy, conservation, education, and appropriate technology.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="case3">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Case Studies</h3>
+                <div class="case-study">
+                    <h3><i class="fas fa-industry"></i> Industrial Change - UK Manufacturing Decline</h3>
+                    <p>Case study content for economic development would go here...</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Unit 4 Content -->
+        <section class="unit-content" id="unit4">
+            <div class="unit-header">
+                <h2>4. Geographical Skills</h2>
+                <p>Mapwork, data analysis, and fieldwork techniques</p>
+            </div>
+            
+            <div class="content-tabs">
+                <button class="tab-btn active" data-tab="vocab4">Vocabulary List</button>
+                <button class="tab-btn" data-tab="questions4">Past Paper Questions</button>
+                <button class="tab-btn" data-tab="case4">Case Studies</button>
+            </div>
+            
+            <div class="tab-content active" id="vocab4">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Key Vocabulary</h3>
+                <div class="vocab-list">
+                    <div class="vocab-card">
+                        <h4>Relief</h4>
+                        <p>The height and shape of the land.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Contour Line</h4>
+                        <p>Line joining points of equal height on a map.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Grid Reference</h4>
+                        <p>Location defined by numbers (4-figure for area, 6-figure for point).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Bearing</h4>
+                        <p>Direction measured in degrees from north (000°).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Scale</h4>
+                        <p>Relationship between map distance and real distance.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Choropleth Map</h4>
+                        <p>Map using color shades to show data variations.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Dispersed Settlement</h4>
+                        <p>Buildings spread out (often rural).</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Nucleated Settlement</h4>
+                        <p>Buildings clustered around central point.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Linear Settlement</h4>
+                        <p>Buildings arranged in a line along road/river.</p>
+                    </div>
+                    <div class="vocab-card">
+                        <h4>Land Use Map</h4>
+                        <p>Map showing how land in an area is used.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="questions4">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Common Past Paper Questions</h3>
+                <div class="questions-list">
+                    <div class="question-card">
+                        <h4>Question 1</h4>
+                        <p>Calculate the gradient between point A (125m) and point B (75m) that are 2km apart on a map. (3 marks)</p>
+                        <p><strong>Tip:</strong> Gradient = vertical difference / horizontal distance.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 2</h4>
+                        <p>Describe the advantages of using a choropleth map to display population density data. (3 marks)</p>
+                        <p><strong>Tip:</strong> Consider visual clarity, pattern recognition, and comparison ease.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 3</h4>
+                        <p>Explain how you would conduct a fieldwork investigation to measure changes along a river's course. (5 marks)</p>
+                        <p><strong>Tip:</strong> Include site selection, equipment (callipers, meter ruler, float), methodology, and safety.</p>
+                    </div>
+                    <div class="question-card">
+                        <h4>Question 4</h4>
+                        <p>Analyze the likely settlement pattern in an area with contour lines close together and sparse roads. (4 marks)</p>
+                        <p><strong>Tip:</strong> Consider physical constraints on settlement development.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="case4">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Case Studies</h3>
+                <div class="case-study">
+                    <h3><i class="fas fa-map"></i> Fieldwork - River Study Methodology</h3>
+                    <p>Case study content for geographical skills would go here...</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Additional sections for other menu options -->
+        <section class="unit-content" id="all-vocab">
+            <div class="unit-header">
+                <h2><i class="fas fa-book"></i> All Vocabulary</h2>
+                <p>Complete alphabetical list of all IGCSE Geography terms</p>
+            </div>
+            <div class="tab-content active">
+                <p style="text-align: center; padding: 2rem; color: #666;">This section would contain all vocabulary from all units in alphabetical order.</p>
+            </div>
+        </section>
+        
+        <section class="unit-content" id="all-case-studies">
+            <div class="unit-header">
+                <h2><i class="fas fa-file-alt"></i> All Case Studies</h2>
+                <p>Complete collection of all required case studies</p>
+            </div>
+            <div class="tab-content active">
+                <p style="text-align: center; padding: 2rem; color: #666;">This section would contain all case studies from the syllabus in one place.</p>
+            </div>
+        </section>
+        
+        <section class="unit-content" id="exam-tips">
+            <div class="unit-header">
+                <h2><i class="fas fa-lightbulb"></i> Exam Tips & Techniques</h2>
+                <p>Strategies for success in IGCSE Geography exams</p>
+            </div>
+            <div class="tab-content active">
+                <p style="text-align: center; padding: 2rem; color: #666;">This section would contain exam techniques, timing strategies, and answer structuring advice.</p>
+            </div>
+        </section>
+    </div>
 
-<div class="box">
-<h3>Migration & Urbanisation</h3>
-<p>Migration is driven by push and pull factors. Rural–urban migration increases urban populations and contributes to the growth of megacities.</p>
-<p>Rapid urbanisation can lead to problems such as housing shortages, traffic congestion and pressure on services.</p>
-</div>
+    <!-- Footer -->
+    <footer>
+        <p>IGCSE Geography Master &copy; 2023 | Designed for IGCSE Geography Revision</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">Use this resource alongside your textbook and past papers for best results.</p>
+    </footer>
 
-<div class="box">
-<h3>Settlements</h3>
-<p>Settlements vary in size and function and can be ranked using the settlement hierarchy. Land use patterns change with distance from the CBD.</p>
-</div>
-</div>
-
-<!-- RIVERS -->
-<div id="rivers" class="section">
-<h2>Rivers</h2>
-
-<div class="box">
-<h3>River Courses</h3>
-<p>In the upper course, vertical erosion dominates due to steep gradients. In the middle course, lateral erosion forms meanders. In the lower course, deposition forms floodplains and deltas.</p>
-</div>
-
-<div class="box">
-<h3>River Processes</h3>
-<p>Erosion, transportation and deposition shape river channels. Hydraulic action and abrasion erode the river bed and banks.</p>
-</div>
-
-<div class="box">
-<h3>Flooding</h3>
-<p>Flooding can occur due to prolonged rainfall, short lag time on hydrographs, saturated ground and human activities such as urbanisation.</p>
-</div>
-</div>
-
-<!-- VOCABULARY -->
-<div id="vocab" class="section">
-<h2>IGCSE Geography Vocabulary</h2>
-
-<div class="box vocab">
-
-<p><b>Birth Rate:</b> Number of live births per thousand people per year.</p>
-<p><b>Death Rate:</b> Number of deaths per thousand people per year.</p>
-<p><b>Natural Increase:</b> When birth rate is higher than death rate
+    <script>
+        // Menu toggle functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const unitButtons = document.querySelectorAll('.unit-btn');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        
+        // Toggle side menu
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.toggle('active');
+            menuToggle.innerHTML = sideMenu.classList.contains('active') 
+                ? '<i class="fas fa-times fa-lg"></i>' 
+                : '<i class="fas fa-bars fa-lg"></i>';
+        });
+        
+        // Close menu when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = sideMenu.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnToggle && window.innerWidth <= 768) {
+                sideMenu.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars fa-lg"></i>';
+            }
+        });
+        
+        // Unit switching functionality
+        unitButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const unitId = button.getAttribute('data-unit');
+                
+                // Update active button in menu
+                unitButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Show selected unit content
+                document.querySelectorAll('.unit-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(unitId).classList.add('active');
+                
+                // Reset tabs to first tab
+                const firstTab = document.getElementById(unitId).querySelector('.tab-btn');
+                if (firstTab) {
+                    switchTab(firstTab);
+                }
+                
+                // Close menu on mobile after selection
+                if (window.innerWidth <= 768) {
+                    sideMenu.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars fa-lg"></i>';
+                }
+            });
+        });
+        
+        // Tab switching functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                switchTab(this);
+            });
+        });
+        
+        function switchTab(button) {
+            const tabId = button.getAttribute('data-tab');
+            const parentUnit = button.closest('.unit-content');
+            
+            // Update active tab button
+            parentUnit.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // Show selected tab content
+            parentUnit.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            parentUnit.querySelector(`#${tabId}`).classList.add('active');
+        }
+        
+        // Initialize first unit and tab
+        document.addEventListener('DOMContentLoaded', () => {
+            // First unit is already active
+            const firstTab = document.querySelector('.unit-content.active .tab-btn');
+            if (firstTab) {
+                switchTab(firstTab);
+            }
+        });
+    </script>
+</body>
+</html>
