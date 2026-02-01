@@ -1,222 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Geography Revision</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-    }
+<meta charset="UTF-8">
+<title>IGCSE Geography Revision</title>
 
-    /* NAV BAR */
-    .navbar {
-      background-color: #2c3e50;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f0f4f8;
+  color: #2c3e50;
+}
 
-    .navbar h1 {
-      margin: 0;
-      margin-right: 40px;
-    }
+/* NAV BAR */
+.navbar {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
 
-    .navbar a {
-      color: white;
-      margin-right: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.navbar h1 {
+  color: white;
+  margin: 0 30px 0 10px;
+}
 
-    .navbar a:hover {
-      text-decoration: underline;
-    }
+.navbar button {
+  background: #f1c40f;
+  border: none;
+  padding: 10px 18px;
+  margin-right: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
 
-    /* CONTENT */
-    .content {
-      padding: 20px;
-      display: none;
-    }
+.navbar button:hover {
+  transform: scale(1.08);
+  background: #f39c12;
+}
 
-    .content.active {
-      display: block;
-    }
+/* CONTENT SECTIONS */
+.section {
+  display: none;
+  padding: 25px;
+  animation: fadeSlide 0.6s ease;
+}
 
-    h2 {
-      color: #2c3e50;
-    }
+.section.active {
+  display: block;
+}
 
-    h3 {
-      color: #34495e;
-    }
+@keyframes fadeSlide {
+  from {opacity: 0; transform: translateY(25px);}
+  to {opacity: 1; transform: translateY(0);}
+}
 
-    .box {
-      background: white;
-      padding: 15px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-    }
+h2 {
+  color: #1e3c72;
+  border-bottom: 3px solid #f1c40f;
+  padding-bottom: 5px;
+}
 
-    /* VOCABULARY */
-    .vocab {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+.box {
+  background: white;
+  padding: 18px;
+  margin: 18px 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
 
-    .diagram {
-      width: 200px;
-      height: 120px;
-      background-color: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #555;
-    }
+.box h3 {
+  color: #2a5298;
+}
 
-    /* PPQ */
-    textarea {
-      width: 100%;
-      height: 80px;
-      margin-top: 10px;
-    }
+/* VOCAB LIST */
+.vocab p {
+  margin: 6px 0;
+}
 
-    .answer {
-      display: none;
-      background: #e8f5e9;
-      padding: 10px;
-      margin-top: 10px;
-      border-left: 5px solid #2ecc71;
-    }
+/* PPQ */
+textarea {
+  width: 100%;
+  height: 90px;
+  margin-top: 10px;
+  padding: 8px;
+  border-radius: 6px;
+}
 
-    button {
-      margin-top: 10px;
-      padding: 6px 10px;
-      cursor: pointer;
-    }
-  </style>
+.show-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.show-btn:hover {
+  background: #219150;
+}
+
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+  background: #eafaf1;
+  border-left: 6px solid #27ae60;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.answer.show {
+  max-height: 300px;
+  padding: 10px;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- NAV BAR -->
-  <div class="navbar">
-    <h1>Geography</h1>
-    <a onclick="showSection('population')">Human Population</a>
-    <a onclick="showSection('rivers')">Rivers</a>
-  </div>
+<div class="navbar">
+  <h1>Geography</h1>
+  <button onclick="show('population')">Human Population</button>
+  <button onclick="show('rivers')">Rivers</button>
+</div>
 
-  <!-- HUMAN POPULATION -->
-  <div id="population" class="content">
-    <h2>Human Population</h2>
+<!-- POPULATION -->
+<div id="population" class="section active">
+<h2>Human Population</h2>
 
-    <div class="box">
-      <h3>Population Growth</h3>
-      <p>Population growth refers to the increase in the number of people living in a country or area over time.</p>
-    </div>
+<div class="box">
+<h3>Population Growth & Structure</h3>
+<p>Population growth occurs when the <b>birth rate</b> is higher than the <b>death rate</b>, resulting in <b>natural increase</b>. If death rate exceeds birth rate, <b>natural decrease</b> occurs.</p>
+<p><b>Population pyramids</b> show age and sex structure and help identify dependency ratio and future population trends.</p>
+</div>
 
-    <div class="box">
-      <h3>Vocabulary</h3>
-      <div class="vocab">
-        <div>
-          <p><b>Birth rate:</b> Number of births per 1000 people per year.</p>
-          <p><b>Death rate:</b> Number of deaths per 1000 people per year.</p>
-          <p><b>Migration:</b> Movement of people from one place to another.</p>
-        </div>
-        <div class="diagram">Population Pyramid Diagram</div>
-      </div>
-    </div>
-  </div>
+<div class="box">
+<h3>Migration & Urbanisation</h3>
+<p><b>Migration</b> is the movement of people to live in another place. <b>Rural–urban migration</b> occurs due to push factors (poverty, lack of jobs) and pull factors (employment, education).</p>
+<p><b>Urbanisation</b> increases city populations and can lead to the growth of <b>megacities</b>.</p>
+</div>
 
-  <!-- RIVERS -->
-  <div id="rivers" class="content">
-    <h2>Rivers</h2>
+<div class="box vocab">
+<h3>Key Vocabulary – Population & Settlement</h3>
+<p><b>Birth Rate:</b> Number of live births per 1000 people per year.</p>
+<p><b>Death Rate:</b> Number of deaths per 1000 people per year.</p>
+<p><b>Population Density:</b> People per km².</p>
+<p><b>Dependency Ratio:</b> Dependents compared to working population.</p>
+<p><b>Settlement Hierarchy:</b> Ranking of settlements by size and services.</p>
+<p><b>CBD:</b> Commercial and business centre of a city.</p>
+<p><b>Land Use:</b> How land is used (residential, industrial, commercial).</p>
+</div>
+</div>
 
-    <!-- COURSES -->
-    <div class="box">
-      <h3>Upper Course</h3>
-      <p>Steep gradient, vertical erosion, narrow V-shaped valleys, waterfalls.</p>
-    </div>
+<!-- RIVERS -->
+<div id="rivers" class="section">
+<h2>Rivers</h2>
 
-    <div class="box">
-      <h3>Middle Course</h3>
-      <p>Lateral erosion increases, wider valley, meanders form.</p>
-    </div>
+<div class="box">
+<h3>Upper Course</h3>
+<p>Steep gradient, vertical erosion dominant, narrow V-shaped valleys, waterfalls formed by differential erosion.</p>
+</div>
 
-    <div class="box">
-      <h3>Lower Course</h3>
-      <p>Deposition dominates, floodplains, levees and deltas form.</p>
-    </div>
+<div class="box">
+<h3>Middle Course</h3>
+<p>Lateral erosion increases, river becomes wider and deeper, meanders form due to erosion on the outer bend and deposition on the inner bend.</p>
+</div>
 
-    <!-- VOCAB -->
-    <div class="box">
-      <h3>River Vocabulary</h3>
-      <div class="vocab">
-        <div>
-          <p><b>Erosion:</b> Wearing away of river banks and bed.</p>
-          <p><b>Transportation:</b> Movement of material by the river.</p>
-          <p><b>Deposition:</b> Dropping of sediment when energy decreases.</p>
-        </div>
-        <div class="diagram">River Processes Diagram</div>
-      </div>
-    </div>
+<div class="box">
+<h3>Lower Course</h3>
+<p>Deposition dominates, floodplains and levees form, river may form a delta when entering the sea.</p>
+</div>
 
-    <!-- HYDROGRAPHS -->
-    <div class="box">
-      <h3>Hydrographs</h3>
-      <p>A hydrograph shows river discharge over time after rainfall.</p>
-      <ul>
-        <li>Lag time</li>
-        <li>Peak discharge</li>
-        <li>Rising limb</li>
-        <li>Falling limb</li>
-      </ul>
-      <div class="diagram">Hydrograph Diagram</div>
-    </div>
+<div class="box">
+<h3>River Processes & Landforms</h3>
+<p><b>Erosion:</b> Hydraulic action and abrasion.</p>
+<p><b>Transportation:</b> Traction, saltation, suspension, solution.</p>
+<p><b>Deposition:</b> Occurs when river loses energy.</p>
+</div>
 
-    <!-- CASE STUDIES -->
-    <div class="box">
-      <h3>Case Study: Ganges River</h3>
-      <p>The Ganges flows through India and Bangladesh. It causes flooding due to monsoon rainfall, snowmelt, and flat floodplains.</p>
-    </div>
+<div class="box">
+<h3>Hydrographs</h3>
+<p>A hydrograph shows river discharge after rainfall. Key features include lag time, rising limb, peak discharge, and falling limb.</p>
+</div>
 
-    <div class="box">
-      <h3>Case Study: Boscastle Flood (UK)</h3>
-      <p>In 2004, heavy rainfall caused flash flooding due to steep valleys, saturated ground, and human factors.</p>
-    </div>
+<div class="box">
+<h3>Case Studies</h3>
+<p><b>Ganges River:</b> Flooding caused by monsoon rainfall, snowmelt, and flat floodplains.</p>
+<p><b>Boscastle Flood (2004):</b> Flash flooding caused by intense rainfall, steep valley sides, and saturated ground.</p>
+</div>
 
-    <!-- PPQ -->
-    <div class="box">
-      <h3>IGCSE PPQ Practice</h3>
+<div class="box">
+<h3>IGCSE PPQ Practice</h3>
+<p><b>Question:</b> How does a delta form?</p>
+<textarea placeholder="Write your answer here..."></textarea>
+<button class="show-btn" onclick="toggle()">Show Answer</button>
+<div id="ans" class="answer">
+A delta forms when a river enters the sea, loses energy, and deposits sediment. Over time, layers of deposition build outwards to form a delta.
+</div>
+</div>
 
-      <p><b>Question:</b> How does a delta form?</p>
-      <textarea placeholder="Type your answer here..."></textarea>
+</div>
 
-      <button onclick="toggleAnswer()">Show Answer</button>
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-      <div id="answer" class="answer">
-        A delta forms when a river slows down as it enters the sea, causing deposition of sediment which builds up over time.
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.content');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
-    }
-
-    function toggleAnswer() {
-      const answer = document.getElementById('answer');
-      answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
-    }
-  </script>
+function toggle() {
+  document.getElementById("ans").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
