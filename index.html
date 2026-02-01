@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Geography Revision</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    /* NAV BAR */
+    .navbar {
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      margin-right: 40px;
+    }
+
+    .navbar a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 20px;
+      display: none;
+    }
+
+    .content.active {
+      display: block;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    h3 {
+      color: #34495e;
+    }
+
+    .box {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    /* VOCABULARY */
+    .vocab {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .diagram {
+      width: 200px;
+      height: 120px;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* PPQ */
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+    }
+
+    .answer {
+      display: none;
+      background: #e8f5e9;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 5px solid #2ecc71;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV BAR -->
+  <div class="navbar">
+    <h1>Geography</h1>
+    <a onclick="showSection('population')">Human Population</a>
+    <a onclick="showSection('rivers')">Rivers</a>
+  </div>
+
+  <!-- HUMAN POPULATION -->
+  <div id="population" class="content">
+    <h2>Human Population</h2>
+
+    <div class="box">
+      <h3>Population Growth</h3>
+      <p>Population growth refers to the increase in the number of people living in a country or area over time.</p>
+    </div>
+
+    <div class="box">
+      <h3>Vocabulary</h3>
+      <div class="vocab">
+        <div>
+          <p><b>Birth rate:</b> Number of births per 1000 people per year.</p>
+          <p><b>Death rate:</b> Number of deaths per 1000 people per year.</p>
+          <p><b>Migration:</b> Movement of people from one place to another.</p>
+        </div>
+        <div class="diagram">Population Pyramid Diagram</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIVERS -->
+  <div id="rivers" class="content">
+    <h2>Rivers</h2>
+
+    <!-- COURSES -->
+    <div class="box">
+      <h3>Upper Course</h3>
+      <p>Steep gradient, vertical erosion, narrow V-shaped valleys, waterfalls.</p>
+    </div>
+
+    <div class="box">
+      <h3>Middle Course</h3>
+      <p>Lateral erosion increases, wider valley, meanders form.</p>
+    </div>
+
+    <div class="box">
+      <h3>Lower Course</h3>
+      <p>Deposition dominates, floodplains, levees and deltas form.</p>
+    </div>
+
+    <!-- VOCAB -->
+    <div class="box">
+      <h3>River Vocabulary</h3>
+      <div class="vocab">
+        <div>
+          <p><b>Erosion:</b> Wearing away of river banks and bed.</p>
+          <p><b>Transportation:</b> Movement of material by the river.</p>
+          <p><b>Deposition:</b> Dropping of sediment when energy decreases.</p>
+        </div>
+        <div class="diagram">River Processes Diagram</div>
+      </div>
+    </div>
+
+    <!-- HYDROGRAPHS -->
+    <div class="box">
+      <h3>Hydrographs</h3>
+      <p>A hydrograph shows river discharge over time after rainfall.</p>
+      <ul>
+        <li>Lag time</li>
+        <li>Peak discharge</li>
+        <li>Rising limb</li>
+        <li>Falling limb</li>
+      </ul>
+      <div class="diagram">Hydrograph Diagram</div>
+    </div>
+
+    <!-- CASE STUDIES -->
+    <div class="box">
+      <h3>Case Study: Ganges River</h3>
+      <p>The Ganges flows through India and Bangladesh. It causes flooding due to monsoon rainfall, snowmelt, and flat floodplains.</p>
+    </div>
+
+    <div class="box">
+      <h3>Case Study: Boscastle Flood (UK)</h3>
+      <p>In 2004, heavy rainfall caused flash flooding due to steep valleys, saturated ground, and human factors.</p>
+    </div>
+
+    <!-- PPQ -->
+    <div class="box">
+      <h3>IGCSE PPQ Practice</h3>
+
+      <p><b>Question:</b> How does a delta form?</p>
+      <textarea placeholder="Type your answer here..."></textarea>
+
+      <button onclick="toggleAnswer()">Show Answer</button>
+
+      <div id="answer" class="answer">
+        A delta forms when a river slows down as it enters the sea, causing deposition of sediment which builds up over time.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function toggleAnswer() {
+      const answer = document.getElementById('answer');
+      answer.style.display = answer.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+
+</body>
+</html>
